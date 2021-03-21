@@ -1,0 +1,244 @@
+
+
+CREATE DATABASE [capstonedb2]
+GO
+
+USE [capstonedb2]
+
+
+CREATE TABLE [dbo].[Event](
+	[EventID] [int] PRIMARY KEY,
+	[EventTitle] [varchar](50) NULL,
+	[Time] [time](7) NULL,
+	[End] [time](7) NULL,
+	[Location] [varchar](50) NULL,
+	[Season] [int] not null
+); 
+
+CREATE TABLE [dbo].[EventAttendance](
+	[EventAttendanceID] [int] PRIMARY KEY,
+	[EventID] [int] NOT NULL,
+	[StudentID] [int] NOT NULL
+);
+
+
+CREATE TABLE [dbo].[EventPersonnel](
+	[PersonnelID] [int] PRIMARY KEY,
+	[FirstName] [varchar](50) NULL,
+	[LastName] [varchar](50) NULL,
+	[EmailAddress] [varchar](50) NULL,
+	[PhoneNumber] [numeric](18, 0) NULL,
+	[PersonnelType] [varchar](50) NULL,
+	[ShirtInfoID] [int] NOT NULL
+)
+
+
+CREATE TABLE [dbo].[EventPresenters](
+	[EventPresenterID] [int] PRIMARY KEY,
+	[EventID] [int] NOT NULL,
+	[PersonnelID] [int] NOT NULL,
+	[Role] [varchar](50) NULL
+)
+
+CREATE TABLE [dbo].[School](
+	[SchoolID] [int] PRIMARY KEY,
+	[Name] [varchar](50) NULL,
+	[PhoneNumber] [numeric](18, 0) NULL,
+	[PrimaryContactName] [varchar](50) NULL,
+	[Address1] [varchar](50) NULL,
+	[Address2] [varchar](50) NULL,
+	[City] [varchar](50) NULL,
+	[State] [varchar](50) NULL,
+	[Zip] [numeric](18, 0) NULL,
+	[Day] [int] NOT NULL
+)
+
+CREATE TABLE [dbo].[Student](
+	[StudentID] [int] PRIMARY KEY,
+	[FirstName] [varchar](50) NULL,
+	[LastName] [varchar](50) NULL,
+	[Age] [int] NULL,
+	[Notes] [varchar](50) NULL,
+	[TeacherID] [int] NOT NULL,
+	[Gender] [varchar](50) NULL,
+	[Dietary] [varchar](50) NULL,
+	[ParentComing] [bit] NULL,
+	[Permission] [bit] NULL,
+	[TCheck] [bit] NULL,
+	[ParentName] [varchar](50) NULL,
+	[ParentEmail] [varchar](50) NULL
+
+)
+
+CREATE TABLE [dbo].[Teacher](
+	[TeacherID] [int] PRIMARY KEY,
+	[SchoolID] [int] NOT NULL,
+	[FirstName] [varchar](50) NULL,
+	[LastName] [varchar](50) NULL,
+	[EmailAddress] [varchar](50) NULL,
+	
+	
+	[Grade] [varchar](50) NOT NULL
+)
+
+CREATE TABLE [dbo].[TShirtConfigurations](
+	[ShirtInfoID] [int] PRIMARY KEY,
+	[ShirtSize] [varchar](50) NULL,
+	[ShirtColor] [varchar](50) NULL,
+	[ShirtDescription] [varchar](50) NULL
+)
+
+GO
+
+ALTER TABLE [dbo].[EventAttendance]  WITH CHECK ADD  CONSTRAINT [FK_EventAttendance_Event] FOREIGN KEY([EventID])
+REFERENCES [dbo].[Event] ([EventID])
+GO
+ALTER TABLE [dbo].[EventAttendance] CHECK CONSTRAINT [FK_EventAttendance_Event]
+GO
+ALTER TABLE [dbo].[EventAttendance]  WITH CHECK ADD  CONSTRAINT [FK_EventAttendance_Student] FOREIGN KEY([StudentID])
+REFERENCES [dbo].[Student] ([StudentID])
+GO
+ALTER TABLE [dbo].[EventAttendance] CHECK CONSTRAINT [FK_EventAttendance_Student]
+GO
+ALTER TABLE [dbo].[EventPersonnel]  WITH CHECK ADD  CONSTRAINT [FK_EventPersonnel_TShirtConfigurations] FOREIGN KEY([ShirtInfoID])
+REFERENCES [dbo].[TShirtConfigurations] ([ShirtInfoID])
+GO
+ALTER TABLE [dbo].[EventPersonnel] CHECK CONSTRAINT [FK_EventPersonnel_TShirtConfigurations]
+GO
+ALTER TABLE [dbo].[EventPresenters]  WITH CHECK ADD  CONSTRAINT [FK_EventPresenters_Event] FOREIGN KEY([EventID])
+REFERENCES [dbo].[Event] ([EventID])
+GO
+ALTER TABLE [dbo].[EventPresenters] CHECK CONSTRAINT [FK_EventPresenters_Event]
+GO
+ALTER TABLE [dbo].[EventPresenters]  WITH CHECK ADD  CONSTRAINT [FK_EventPresenters_EventPersonnel] FOREIGN KEY([PersonnelID])
+REFERENCES [dbo].[EventPersonnel] ([PersonnelID])
+GO
+ALTER TABLE [dbo].[EventPresenters] CHECK CONSTRAINT [FK_EventPresenters_EventPersonnel]
+GO
+ALTER TABLE [dbo].[Student]  WITH CHECK ADD  CONSTRAINT [FK_Student_Teacher] FOREIGN KEY([TeacherID])
+REFERENCES [dbo].[Teacher] ([TeacherID])
+GO
+ALTER TABLE [dbo].[Student] CHECK CONSTRAINT [FK_Student_Teacher]
+GO
+
+
+GO
+ALTER TABLE [dbo].[Teacher]  WITH CHECK ADD  CONSTRAINT [FK_Teacher_School] FOREIGN KEY([SchoolID])
+REFERENCES [dbo].[School] ([SchoolID])
+GO
+ALTER TABLE [dbo].[Teacher] CHECK CONSTRAINT [FK_Teacher_School]
+GO
+
+
+
+
+
+INSERT into School values (0,'Westgate', 7035565656, 'Jim Jones', '1556 Main St.', '100 Water St.', 'McLean', 'VA', 22101,1)
+
+INSERT into TShirtConfigurations values (0,'L','Blue','Very cool')
+
+INSERT into School values (1,'Cooper', 5715565656, 'Alex Wann', '1000 Great St.', '5555 Rocky Road.', 'Vienna', 'VA', 22122,0)
+
+INSERT into TShirtConfigurations values (1,'M','Blue','Super cool')
+
+INSERT into School values (2,'Longfellow', 5408889999, 'Ana Cox', '1000 Walker Trl', '33 Short Road.', 'Bethesda', 'MD', 20002,1)
+
+INSERT into TShirtConfigurations values (2,'S','Blue','Cool')
+
+INSERT into teacher values (0,0,'James', 'Smith', 's@gmail.com', 0)
+INSERT into TShirtConfigurations values (3,'S','Green','Slick')
+INSERT into TShirtConfigurations values (4,'M','Green','Slick')
+INSERT into TShirtConfigurations values (5,'L','Green','Stylish')
+INSERT into TShirtConfigurations values (6,'S','Yellow','Happy')
+INSERT into TShirtConfigurations values (7,'M','Yellow','Mellow')
+INSERT into TShirtConfigurations values (8,'L','Yellow','Great')
+INSERT into TShirtConfigurations values (9,'S','Black','Nice Design')
+INSERT into TShirtConfigurations values (10,'M','Black','Most Popular')
+INSERT into TShirtConfigurations values (11,'L','Black','Sleek')
+
+INSERT into teacher values (1,1,'Rick', 'James', 'itsrjb@gmail.com',  1)
+INSERT into teacher values (2,0,'Maestro', 'Ezell', 'genius@MENSA.com',  5)
+INSERT into teacher values (3,2,'Jackson', 'Epstein', 'did@himself.com', 6)
+
+INSERT into eventpersonnel values (0,'Jose', 'Rosen', 'Q@MI5.com', 7034445555, 'Volunteer',1)
+INSERT into eventpersonnel values (1,'Reid', 'Watt', 'vol@vol.com', 7032225555, 'Volunteer',3)
+INSERT into eventpersonnel values (2,'Steve', 'Obama', 'ILove@asp.net', 7034499955, 'Volunteer',0)
+
+
+
+
+
+INSERT into event values (0,'Coding - Period 1', '10:00', '11:00', 'Showker - Upper Lab',0)
+INSERT into event values (1,'Robotics - Period 2', '10:00', '11:00', 'Showker - Lower Lab',0)
+
+
+INSERT into event values (4,'Presentation - Period 3', '1:45', '2:45', 'Showker - Auditorium G1',0)
+
+INSERT into event values (5,'Coding - Period 1', '10:00', '11:00', 'Showker - Upper Lab',1)
+INSERT into event values (6,'Robotics - Period 2', '10:00', '11:00', 'Showker - Lower Lab',1)
+
+
+
+INSERT into event values (9,'Presentation - Period 3', '1:45', '2:45', 'Showker - Auditorium G1',1)
+
+
+
+INSERT into EventPresenters values (0,0,0,'Volunteer')
+INSERT into EventPresenters values (1,1,1,'Volunteer')
+INSERT into EventPresenters values (2,2,2,'Volunteer')
+INSERT into EventPresenters values (3,2,2,'Volunteer')
+
+INSERT into EventPresenters values (4,4,4,'Coordinator')
+INSERT into EventPresenters values (5,4,5,'Coordinator')
+INSERT into EventPresenters values (6,9,3,'Coordinator')
+INSERT into EventPresenters values (7,9,4,'Coordinator')
+
+
+INSERT into student values (0,'Jimmy', 'Maddy', 5, 'n/a', 0,'Male','Gluten',0,0,0,'Bill Maddy','bm@maddy.gov)
+
+
+DECLARE @FirstName VARCHAR(50)
+DECLARE @LastName VARCHAR(50)
+DECLARE @Age INT
+DECLARE @Notes VARCHAR(50)
+DECLARE @LunchTicket BIT
+DECLARE @TeacherID INT
+DECLARE @ShirtInfoID INT
+DECLARE @searchText VARCHAR(50)
+DECLARE @Location VARCHAR(50)
+
+DECLARE @Role VARCHAR(50)
+
+DECLARE @Email VARCHAR(50)
+DECLARE @Phone NUMERIC(18, 0)
+
+CREATE TABLE [dbo].[Verify](
+[Code] [varchar](50) PRIMARY KEY,
+[Type] [int] NOT NULL
+);
+
+
+INSERT into Verify values ('0westspringpar',1)
+INSERT into Verify values ('1coopfall21par',1)
+INSERT into Verify values ('2longspringpar',1)
+
+INSERT into Verify values ('0westspringtea',2)
+INSERT into Verify values ('1coopfall21tea',2)
+INSERT into Verify values ('2longspringtea',2)
+
+
+INSERT into Verify values ('jmuvol21cis',3)
+
+
+
+CREATE TABLE [dbo].[Day](
+	[DayID] [int] PRIMARY KEY,
+	[Title] [varchar](50) NOT NULL,
+	[Date] [date] Not NULL
+); 
+
+INSERT into Day values (0,'Fall', '2021-10-10')
+INSERT into Day values (1,'Spring', '2021-3-3')
+
+
+
