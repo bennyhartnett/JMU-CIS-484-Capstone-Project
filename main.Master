@@ -1,0 +1,16 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="main.master.cs" Inherits="CapstoneFinal.main" %>
+
+<!DOCTYPE html>
+<style type="text/css">
+    body {
+        overflow: hidden;
+    }
+</style>
+<html>
+<body>
+    
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1Main" runat="server">
+            </asp:ContentPlaceHolder>
+        
+</body>
+</html>

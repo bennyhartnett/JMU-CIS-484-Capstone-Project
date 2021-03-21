@@ -1,0 +1,40 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/main.Master" AutoEventWireup="true" CodeBehind="first.master.cs" Inherits="CapstoneFinal.first" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1Main" runat="server">
+    <!DOCTYPE html>
+         
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>CyberDay - James Madison University</title>
+    <link href="StyleSheet1.css" rel="stylesheet" />
+</head>
+<body>
+    <form id="form1" runat="server">
+
+        <div id="menu">
+            <asp:Image id= "top" runat="server" ImageUrl="~/grey1.png"/>
+            <ul>
+                <li><a href="home.aspx">Home</a></li>
+                <li><a href="Verify.aspx">Sign Up</a>
+                    
+                
+                <li style="width: 1172px"><a href="#"></a></li>
+                
+                <li><a href="Login.aspx">Login</a></li>
+                
+
+
+            </ul>
+
+
+           
+
+        </div>
+        <asp:ContentPlaceHolder ID="nestedFirst" runat="server">
+
+    </asp:ContentPlaceHolder>
+    </form>
+    </body>
+    </html>
+    
+</asp:Content>
+

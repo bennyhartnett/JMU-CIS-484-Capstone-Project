@@ -1,0 +1,89 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/main.Master" AutoEventWireup="true" CodeBehind="coord.master.cs" Inherits="CapstoneFinal.coord" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1Main" runat="server">
+    <!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>CyberDay - Coordinator Portal - JMU</title>
+    <link href="StyleSheet1.css" rel="stylesheet" />
+
+</head>
+<body>
+    <form id="form1" runat="server">
+
+        <div id="menu">
+            <asp:Image id= "top" runat="server" ImageUrl="~/grey1c.png"/>
+            <ul>
+                <li><a href="homeC.aspx">Home</a></li>
+                <li><a href="#">Students</a>
+                    <ul>
+                        <li><a href="StudentC.aspx">Add </a></li>
+                        <li><a href="ViewStudentsC.aspx">View </a></li>
+                        <li><a href="editStudent.aspx">Edit </a></li>
+                        
+                    </ul>
+                </li>
+                <li><a href="#">Teachers</a>
+                    <ul>
+                        <li><a href="AddTeacherC.aspx">Add</a></li>
+                        <li><a href="SchoolC.aspx">View </a></li>
+                        <li><a href="editTeacher.aspx">Edit </a></li>
+                    </ul>
+                </li>
+
+                <li><a href="#">Schools</a>
+                    <ul>
+                        <li><a href="AddSchool.aspx">Add </a></li>
+                        <li><a href="ViewSchoolsC.aspx">View </a></li>
+                        <li><a href="editSchool.aspx">Edit </a></li>
+                        
+                    </ul>
+                </li>
+
+                <li><a href="#">Events</a>
+                    <ul>
+                        <li><a href="AddEvent.aspx">Add </a></li>
+                        <li><a href="EventC.aspx">View </a></li>
+                        <li><a href="editEvent.aspx">Edit </a></li>
+                        <li><a href="AddDay.aspx">New Day </a></li>
+                        <li><a href="EditDay.aspx">Edit Day </a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Personnel</a>
+                    <ul>
+                        <li><a href="AddVolunteerC.aspx">Add </a></li>
+                        <li><a href="PersonnelC.aspx">View </a></li>
+                        <li><a href="editVolunteer.aspx">Edit </a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Verification</a>
+                    <ul>
+                        
+                        <li><a href="TCode.aspx">Teacher Codes </a></li>
+                        <li><a href="PCode.aspx">Parent Codes</a></li>
+                        <li><a href="VCode.aspx">Volunteer Codes</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="#">Reports</a>
+                    <ul>
+                        <li><a href="Tab.aspx">Map</a></li>
+                       
+                        <li><a href="print.aspx">Printables</a></li>
+                    </ul>
+                </li>
+                <li style="width: 444px"><a href="#"></a></li>
+                
+                <li><a href="logout.aspx">Log Out</a></li>
+      
+            </ul>
+
+        </div>
+   
+    <asp:ContentPlaceHolder ID="nestedFirst" runat="server">
+
+    </asp:ContentPlaceHolder>
+         </form>
+    </body>
+    </html>
+</asp:Content>
