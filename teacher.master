@@ -1,0 +1,62 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/main.Master" AutoEventWireup="true" CodeBehind="teacher.master.cs" Inherits="CapstoneFinal.teacher" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1Main" runat="server">
+    <!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>CyberDay - Teacher Portal - JMU</title>
+    <link href="StyleSheet1.css" rel="stylesheet" />
+</head>
+<body>
+    <form id="form1" runat="server">
+
+        <div id="menu">
+            <asp:Image id= "top" runat="server" ImageUrl="~/grey1t.png"/>
+            <ul>
+                <li><a href="homeT.aspx">Home</a></li>
+                <li><a href="Event.aspx">Events</a>
+                
+                </li>
+                <li><a href="#">Students</a>
+                    <ul>
+                        <li><a href="Ros.aspx">View</a></li>
+                        <li><a href="StudentT.aspx">Add</a></li>
+                        
+                        <li><a href="EditMyStudents.aspx">Edit</a></li>
+                        
+                    </ul>
+                </li>
+                <li><a href="PCodeT.aspx">Verification</a>
+                <li><a href="#">Schools</a>
+                    <ul>
+                        <li><a href="ViewSchools.aspx">Information</a></li>
+                        <li><a href="School.aspx">Teachers</a></li>
+                        
+                        
+                    </ul>
+                </li>
+
+                
+                
+                
+               
+                <li style="width: 809px"><a href="#"></a></li>
+                
+                <li><a href="logout.aspx">Log Out</a></li>
+                
+
+
+            </ul>
+
+
+           
+
+        </div>
+   
+    <asp:ContentPlaceHolder ID="nestedFirst" runat="server">
+
+    </asp:ContentPlaceHolder>
+         </form>
+    </body>
+    </html>
+</asp:Content>
